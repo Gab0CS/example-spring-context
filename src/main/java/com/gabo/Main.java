@@ -1,10 +1,12 @@
 package com.gabo;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.gabo.beans.HelloWorld;
+import com.gabo.configs.StoneConfigs;
 import com.gabo.models.MindStone;
 import com.gabo.models.PowerStone;
 import com.gabo.models.RealityStone;
@@ -16,16 +18,16 @@ import com.gabo.services.GaunletServiceImpl;
 public class Main {
     public static void main(String[] args) {
 
-        final ApplicationContext applicationContext = 
-        new ClassPathXmlApplicationContext("stones.xml");
+        final AnnotationConfigApplicationContext applicationContext 
+        = new AnnotationConfigApplicationContext(StoneConfigs.class);
 
-        final GaunletServiceImpl gaunletService = 
-        applicationContext.getBean("gaunlet", GaunletServiceImpl.class);
+        final GaunletServiceImpl gaunletService =
+        applicationContext.getBean(GaunletServiceImpl.class);
 
-        gaunletService.useGaunlet("reality");
-        gaunletService.useGaunlet("power");
+        gaunletService.useGaunlet("space");
+        gaunletService.useFullPower();
+        
 
-        ((AbstractApplicationContext) applicationContext).close();
         /*
          * Load all beans by eager
          * implementation of IoC supports events, internationalization

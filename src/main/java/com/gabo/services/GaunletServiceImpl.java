@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import com.gabo.models.MindStone;
 import com.gabo.models.PowerStone;
@@ -22,8 +23,8 @@ import lombok.extern.java.Log;
 
 @Log
 @Getter
+@Component //IoC
 public class GaunletServiceImpl implements GaunletService {
-
     //DI
     private final Stone mind;
     private final Stone power;

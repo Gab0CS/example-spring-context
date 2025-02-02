@@ -19,6 +19,8 @@
     <bean id="soul" class="com.gabo.models.SoulStone" scope="prototype"/>
     <bean id="space" class="com.gabo.models.SpaceStone" scope="prototype"/>
     
-    <bean id="gaunlet" class="com.gabo.services.GaunletServiceImpl" autowire="constructor"/>
+    <bean id="gaunlet" class="com.gabo.services.GaunletServiceImpl" autowire="constructor"
+    destroy-method="get"
+    init-method=""/>
     
 </beans>
