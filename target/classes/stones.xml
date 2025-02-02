@@ -2,8 +2,15 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd">
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.gabo" />
+    
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
 
     <bean id="mind" class="com.gabo.models.MindStone" scope="prototype"/>
     <bean id="power" class="com.gabo.models.PowerStone" scope="prototype"/>
@@ -11,5 +18,7 @@
     <bean id="time" class="com.gabo.models.TimeStone" scope="prototype"/>
     <bean id="soul" class="com.gabo.models.SoulStone" scope="prototype"/>
     <bean id="space" class="com.gabo.models.SpaceStone" scope="prototype"/>
+    
+    <bean id="gaunlet" class="com.gabo.services.GaunletServiceImpl" autowire="constructor"/>
     
 </beans>

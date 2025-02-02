@@ -3,6 +3,9 @@ package com.gabo.services;
 import java.lang.reflect.Field;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import com.gabo.models.MindStone;
 import com.gabo.models.PowerStone;
 import com.gabo.models.RealityStone;
@@ -18,16 +21,34 @@ import lombok.Setter;
 import lombok.extern.java.Log;
 
 @Log
-@AllArgsConstructor  
 @Getter
 public class GaunletServiceImpl implements GaunletService {
 
-    private final MindStone mind;
-    private final PowerStone power;
-    private final RealityStone reality;
-    private final SoulStone soul;
-    private final SpaceStone space;
-    private final TimeStone time;
+    //DI
+    private final Stone mind;
+    private final Stone power;
+    private final Stone reality;
+    private final Stone soul;
+    private final Stone space;
+    private final Stone time;
+    
+    //DI by constructor recommended for Spri
+    @Autowired
+    public GaunletServiceImpl(
+    @Qualifier("mind") Stone mind,
+    @Qualifier("power") Stone power,
+    @Qualifier("reality") Stone reality,
+    @Qualifier("soul") Stone soul,
+    @Qualifier("space") Stone space,
+    @Qualifier("time") Stone time) {
+        this.mind = mind;
+        this.power = power;
+        this.reality = reality;
+        this.soul = soul;
+        this.space = space;
+        this.time = time;
+    }
+
 
     @Override
     public void useGaunlet(String stoneName){
